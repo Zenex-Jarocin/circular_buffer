@@ -18,7 +18,7 @@ enum class cirBufErr_t
 	OVERRIDE
 };
 
-constexpr uint8_t DEFAULT_BUFFER_SIZE = 64;
+constexpr uint8_t DEFAULT_BUFFER_SIZE = 128;
 class CircularBuffer
 {
 public:
@@ -28,6 +28,8 @@ public:
 
 	cirBufErr_t put(const uint8_t item);
 	cirBufErr_t take(uint8_t* const pItem);
+
+	bool isFull(void);
 
 private:
 	uint8_t m_dataBuffer[DEFAULT_BUFFER_SIZE];

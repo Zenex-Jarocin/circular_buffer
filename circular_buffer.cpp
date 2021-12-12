@@ -1,8 +1,5 @@
 /*
- * circular_buffer.cpp
- *
- *  Created on: Dec 6, 2021
- *      Author: emka
+ * eMKa elektronika
  */
 
 #include "circular_buffer.h"
@@ -43,11 +40,16 @@ cirBufErr_t CircularBuffer::take(uint8_t* const pItem)
 	return cirBufErr_t::OK;
 }
 
+bool CircularBuffer::isFull(void)
+{
+	return (this->getFreeSpace() == 0);
+}
+
 
 uint8_t CircularBuffer::getFreeSpace(void)
 {
 	if (m_putPointer == m_takePointer)
-		return m_dataCounter;
+		return m_bufferSize - m_dataCounter;
 
 	if (m_putPointer > m_takePointer)
 		return m_bufferSize - (m_putPointer - m_takePointer);
